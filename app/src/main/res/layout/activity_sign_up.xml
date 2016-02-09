@@ -7,7 +7,7 @@
     <EditText
         android:id="@+id/signupUserNameEt"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
 
     <EditText
         android:id="@+id/nameEt"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -28,7 +28,7 @@
     <EditText
         android:id="@+id/signupPasswordEt"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -39,7 +39,7 @@
     <EditText
         android:id="@+id/confirmPasswordEt"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -50,7 +50,7 @@
     <EditText
         android:id="@+id/emailEt"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -62,7 +62,7 @@
     <Button
         android:id="@+id/btnsignup"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="20sp"
 
         android:layout_height="0dp"
         android:layout_margin="15dp"

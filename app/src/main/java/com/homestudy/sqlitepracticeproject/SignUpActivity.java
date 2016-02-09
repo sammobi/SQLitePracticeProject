@@ -1,6 +1,7 @@
 package com.homestudy.sqlitepracticeproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -49,41 +50,36 @@ public class SignUpActivity extends Activity {
                 confirmpassword = mConfirmPasswordEt.getText().toString();
 
                 if (!isValidUsername(username)) {
-                    mSignupUsernameEt.setError("Invalid username");
+                    mSignupUsernameEt.setError("Please enter a username more than 8 characters. ");
 
                     return;
-                }
-
-
-                if (!isValidPassword(password)) {
-                    mSignupPasswordEt.setError("Invalid Password");
+                } else if (!isValidName(name)) {
+                    mNameEt.setError("Please enter your name");
+                    return;
+                } else if (!isValidPassword(password)) {
+                    mSignupPasswordEt.setError("Please enter a password more than 8 characters. ");
 
                     return;
-                }
-                if (!isValidConfirmPassword(confirmpassword)) {
-                    mConfirmPasswordEt.setError("Invalid confirm Password");
+                } else if (!isValidConfirmPassword(confirmpassword)) {
+                    mConfirmPasswordEt.setError("Please enter a password more than 8 characters.");
                     return;
-                }
-
-                if (!isValidName(name)) {
-                    mNameEt.setError("Invalid confirm Password");
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    mEmailEt.setError("Invalid email address");
-                    return;
-                }
-
-                if (!checkPassWordAndConfirmPassword(password, confirmpassword)) {
+                } else if (!password.equals(confirmpassword)) {
 
                     mConfirmPasswordEt.setError("Please check your password combination ");
                     return;
+
+                } else if (!isValidEmail(email)) {
+                    mEmailEt.setError("Invalid email address");
+                    return;
+
                 } else {
                     long l = sqLiteAdapter.insertOrUpdateUser(email, username, name, password);
                     if (l > 0) {
 
                         Toast.makeText(getApplicationContext(), "Successfully Signed Up", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                        startActivity(intent);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Signup Unsuccessful", Toast.LENGTH_LONG).show();
@@ -124,6 +120,7 @@ public class SignUpActivity extends Activity {
         return matcher.matches();
     }
 
+
     // validating password with retype password
     private boolean isValidPassword(String password) {
         if (password != null && password.length() > 6) {
@@ -145,11 +142,12 @@ public class SignUpActivity extends Activity {
 
     public boolean checkPassWordAndConfirmPassword(String password, String confirmpassword) {
         boolean pstatus = false;
-        if (confirmpassword != null && password != null) {
-            if (password.equals(confirmpassword)) {
+        if (confirmpassword != null && password != null && confirmpassword.equals(password)) {
+            if (confirmpassword.equals(password)) {
                 pstatus = true;
             }
         }
+
         return pstatus;
     }
 

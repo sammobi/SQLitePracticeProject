@@ -174,4 +174,28 @@ public class SQLiteAdapter {
         }
     }
 
+    public String getPasswordForEmail(String email) {
+        if (null == email) {
+            return "";
+        }
+
+        String password = "";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_EMAIL_ID, email);
+
+        openToRead();
+        String Query = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_EMAIL_ID + "=?";
+        Cursor cursor = sqLiteDatabase.rawQuery(Query, new String[]{email});
+
+        if (cursor.moveToFirst()) {
+            int index_KEY_PASSWORD = cursor.getColumnIndex(KEY_PASSWORD);
+            password = cursor.getString(index_KEY_PASSWORD);
+        } else {
+            password = "";
+        }
+        close();
+
+        return password;
+    }
+
 }
